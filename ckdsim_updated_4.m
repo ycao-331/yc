@@ -602,7 +602,8 @@ for i = 1:timehorizon
                 %sheet22 = 'BF_nonCVD';
                 
                 deathtable = xlsread(deathFile,sheetname);
-                deathprob = getdeath_1(inputmatrix,findstage5,miStage,deathtable);
+                reduStat = stateMartix(findrows,reduCol);
+                deathprob = getdeath_1(inputmatrix,findstage5,miStage,deathtable,reduStat);
                 stateMatrix(findrows,deathCol)=deathprob;
             end
         end

@@ -60,6 +60,6 @@ for personNum = 1:length(gfrScore)
             + 5.2*(1-gfrThresh(personNum))*macroStatus(personNum)));
         outcomeVec(personNum,1) = max(newScore*coefficient(personNum,1),0);  %writes new gfr to output vector
     end
-    outcomeVec(personNum,1) = (1-0.327)^(reduCol) * outcomeVec(personNum,1);
+    outcomeVec(personNum,1) = (1-0.327)^(reduCol(personNum)) * outcomeVec(personNum,1);
 end
 end
