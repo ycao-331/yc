@@ -1,4 +1,4 @@
-function outVec = getdeath_1(inputM, stage5ind,miStage, table,reduCol)
+function outVec = getdeath_1(inputM, stage5ind,miStage, table)
 
 outVec = nan(length(stage5ind),1);  %make empty output vector to fill
 age = inputM(:,1);
@@ -9,6 +9,7 @@ diabetes = inputM(:,5);
 ht = inputM(:,6);
 micro = inputM(:,7);
 macro = inputM(:,8);
+redu = inputM(:,9);
 
 %loop over individuals
 for personNum = 1:length(age)
@@ -70,5 +71,5 @@ for personNum = 1:length(age)
     if miStage(personNum) >=2
         outVec(personNum,1) = outVec(personNum,1) + table(correctRow,19);
     end
-    outVec(personNum,1) = (1-0.23)^(reduCol(personNum)) * outVec(personNum,1);
+    outVec(personNum,1) = (1-0.23)^(redu(personNum)) * outVec(personNum,1);
 end

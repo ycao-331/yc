@@ -444,7 +444,7 @@ for i = 1:timehorizon
         htStat = stateMatrix(aliveP,htCol);
         diabetesStat = stateMatrix(aliveP,diabetesCol);
         reduStat = stateMatrix(aliveP,reduCol);
-        gfrNew = gfrDecrement_3(ageid, raceid, femaleid, gfrVal, y, y1, y2, macroStat,htStat, diabetesStat,coefficient, reduction,reduStat);
+        gfrNew = gfrDecrement_4(ageid, raceid, femaleid, gfrVal, y, y1, y2, macroStat,htStat, diabetesStat,coefficient,reduStat);
         %     gfrNew = gfrDecrement(gfrVal, y, macroStat,htStat, diabetesStat,coefficient);
         stateMatrix(aliveP,gfrCol) = gfrNew; %replace old gfr values with new ones
         
@@ -592,7 +592,7 @@ for i = 1:timehorizon
                 %get the rows of corresponding gender and race
                 %add stroke
                 findrows= find(stateMatrix(:,genderCol)==gender & stateMatrix(:,raceCol)==race & stateMatrix(:,deathCol)==0 );
-                inputmatrix = stateMatrix(findrows,[ageCol,ckdCol,gfrCol,cvdCol,diabetesCol,htCol,microCol,macroCol]);
+                inputmatrix = stateMatrix(findrows,[ageCol,ckdCol,gfrCol,cvdCol,diabetesCol,htCol,microCol,macroCol,reduCol]);
                 findstage5 = stage5Ind(findrows,1);
                 miStage = miInd(findrows,1);
                 sheetname = strcat('sheet', num2str(race),num2str(gender));
@@ -602,8 +602,8 @@ for i = 1:timehorizon
                 %sheet22 = 'BF_nonCVD';
                 
                 deathtable = xlsread(deathFile,sheetname);
-                reduStat = stateMartix(findrows,reduCol);
-                deathprob = getdeath_1(inputmatrix,findstage5,miStage,deathtable,reduStat);
+              
+                deathprob = getdeath_1(inputmatrix,findstage5,miStage,deathtable);
                 stateMatrix(findrows,deathCol)=deathprob;
             end
         end
